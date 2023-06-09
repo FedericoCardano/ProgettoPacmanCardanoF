@@ -19,7 +19,7 @@ void Alabirinto::BeginPlay()
 
 	
 
-	for (int i = 0; i < 32; i++) {
+	for (int i = 0; i <= 32; i++) {
 		for (int j = 0; j < 28; j++) {
 			FVector pos = FVector(i, j, 0) * 100;
 			switch (map[i][j]) {
@@ -53,4 +53,6 @@ void Alabirinto::Tick(float DeltaTime)
 
 
 }
+
+
 

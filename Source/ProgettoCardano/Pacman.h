@@ -36,6 +36,7 @@ public:
 	void MoveOnX(float val_x);
 	void MoveOnY(float val_y);
 	void die();
+	int getScore();
 	UPROPERTY(EditDefaultsOnly)
 		TSubclassOf<APacman> Pacman;
 	UPROPERTY(VisibleAnywhere,Category="Moviment")
@@ -49,6 +50,9 @@ protected:
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
+
+	UFUNCTION(BlueprintCallable)
+	int32 getPunteggio();
 	int getPosX()
 	{
 		return posX;
@@ -65,6 +69,7 @@ public:
 	int getDirezioneY() { return direzioneY; }
 
 	
+	UFUNCTION(BlueprintCallable)
 	int getLives()
 	{
 		const int L = Nlives;
@@ -76,3 +81,4 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 };
+

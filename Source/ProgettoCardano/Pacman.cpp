@@ -6,6 +6,7 @@
 
 
 
+
 // Sets default values
 APacman::APacman()
 {
@@ -214,6 +215,8 @@ void APacman::Tick(float DeltaTime)
 	SetActorLocation(NewLocation, false, nullptr, ETeleportType::TeleportPhysics);
 }
 
+
+
 // Called to bind functionality to input
 void APacman::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 {
@@ -224,5 +227,9 @@ void APacman::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	InputComponent->BindAxis("y", this, &APacman::MoveOnY);
 }
 
-
+UFUNCTION(BlueprintCallable)
+int32 APacman::getPunteggio()
+{
+	return labirinto -> punteggio;
+}
 
