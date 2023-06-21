@@ -178,6 +178,7 @@ void IGhostInterface::TickInterface(float DeltaTime, int TargetX, int TargetY, A
 
 	//bool walkable = nextSpace != 'W' && nextSpace != 'h' && nextSpace != 'H';
 	//bool inMap = NextPosX>= 0 && NextPosX < 30 && NextPosY>=0 && NextPosY < 28;
+	
 	if (eaten)
 		CoefficenteVel = 1.0f;
 	else if (currentSpace == 't')

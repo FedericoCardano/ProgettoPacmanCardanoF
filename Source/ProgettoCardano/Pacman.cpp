@@ -111,13 +111,23 @@ void APacman::Tick(float DeltaTime)
 	{
 		//You Win
 		GEngine->AddOnScreenDebugMessage(-1,15.0f,FColor::Blue,FString::Printf(TEXT("You Win Lives= %d Npil %d"), Nlives, Npill));
-		
+
+		FVector NewLocation = FVector(23, 13, 0) * 100;
+		SetActorLocation(NewLocation, false, nullptr, ETeleportType::TeleportPhysics);
+
+		currentVelocity.X = 0;
+		currentVelocity.Y = 0;
 	}
 	else if (Nlives < 1)
 	{
 		//GAME OVER
 		GEngine->AddOnScreenDebugMessage(-1,15.0f,FColor::Blue,FString::Printf(TEXT("GAME OVER Lives= %d Npil %d"),Nlives,Npill));
 		
+		FVector NewLocation = FVector(23, 13, 0) * 100;
+		SetActorLocation(NewLocation, false, nullptr, ETeleportType::TeleportPhysics);
+
+		currentVelocity.X = 0;
+		currentVelocity.Y = 0;
 	}
 	else
 		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, FString::Printf(TEXT("Lives= %d Npil %d"), Nlives, Npill));

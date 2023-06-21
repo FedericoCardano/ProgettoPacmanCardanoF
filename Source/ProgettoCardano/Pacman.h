@@ -67,6 +67,7 @@ public:
 	}
 	int getDirezioneX() { return direzioneX; }
 	int getDirezioneY() { return direzioneY; }
+	int getNPill() { return Npill; }
 
 	
 	UFUNCTION(BlueprintCallable)

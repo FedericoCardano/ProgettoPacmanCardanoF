@@ -17,7 +17,7 @@ void APinkGhost::BeginPlay()
 	Super::BeginPlay();
 
 	Spawn.X = 1100;
-	Spawn.Y = 1500;
+	Spawn.Y = 1400;
 	Spawn.Z = 11;
 
 	TArray<AActor*> temp;
@@ -50,54 +50,64 @@ void APinkGhost::BeginPlay()
 void APinkGhost::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-	if (pacmanLifes != pacman->getLives())
+	if (pacman->getNPill() <= 0 || pacman->getLives() < 1)
 	{
-		pacmanLifes = pacman->getLives();
 
 		Cast<AActor>(this)->SetActorLocation(Spawn, false, nullptr, ETeleportType::TeleportPhysics);
-	}
-	if (pacman->GhostHunterMode())
-		tempS = false;
-	if (getPosX() == pacman->getPosX() && getPosY() == pacman->getPosY())
-	{
-		if (pacman->GhostHunterMode() && !eaten || tempS)
-		{
-			//pacman muore
-			pacman->die();
-			FVector NewLocation = FVector(11, 15, 0) * 100;
-			SetActorLocation(NewLocation, false, nullptr, ETeleportType::TeleportPhysics);
-		}
-		else
-		{
-			TickInterface(DeltaTime, 11, 14, labirinto, pacman);//il fantasma torna casa
-			eaten = true;
 
-		}
+		currentVelocity.X = 0;
+		currentVelocity.Y = 0;
+
 	}
 	else {
-		if (eaten)
+		if (pacmanLifes != pacman->getLives())
 		{
-			if (getPosX() == 11 && getPosY() == 14)
+			pacmanLifes = pacman->getLives();
+
+			Cast<AActor>(this)->SetActorLocation(Spawn, false, nullptr, ETeleportType::TeleportPhysics);
+		}
+		if (pacman->GhostHunterMode())
+			tempS = false;
+		if (getPosX() == pacman->getPosX() && getPosY() == pacman->getPosY())
+		{
+			if (pacman->GhostHunterMode() && !eaten || tempS)
 			{
-				eaten = false;
-				tempS = true;
+				//pacman muore
+				pacman->die();
+				FVector NewLocation = FVector(11, 15, 0) * 100;
+				SetActorLocation(NewLocation, false, nullptr, ETeleportType::TeleportPhysics);
 			}
-			TickInterface(DeltaTime, 11, 14, labirinto, pacman);//il fantasma torna casa
+			else
+			{
+				TickInterface(DeltaTime, 11, 14, labirinto, pacman);//il fantasma torna casa
+				eaten = true;
 
+			}
 		}
-		else if (GetWorldTimerManager().IsTimerActive(TimerAngolo) && pacman->GhostHunterMode())
-		{
-			TickInterface(DeltaTime, TargetAngoloX, TargetAngoloY, labirinto, pacman);
+		else {
+			if (eaten)
+			{
+				if (getPosX() == 11 && getPosY() == 14)
+				{
+					eaten = false;
+					tempS = true;
+				}
+				TickInterface(DeltaTime, 11, 14, labirinto, pacman);//il fantasma torna casa
+
+			}
+			else if (GetWorldTimerManager().IsTimerActive(TimerAngolo) && pacman->GhostHunterMode())
+			{
+				TickInterface(DeltaTime, TargetAngoloX, TargetAngoloY, labirinto, pacman);
+			}
+			else
+			{
+				int targetX = pacman->getPosX() + pacman->getDirezioneX() * 4;
+				int targetY = pacman->getPosY() + pacman->getDirezioneY() * 4;
+				TickInterface(DeltaTime, targetX, targetY, labirinto, pacman);
+			}
 		}
-		else
-		{
-			int targetX = pacman->getPosX() + pacman->getDirezioneX() * 4;
-			int targetY = pacman->getPosY() + pacman->getDirezioneY() * 4;
-			TickInterface(DeltaTime, targetX, targetY, labirinto, pacman);
-		}
+
 	}
-
-	//gestire uscita di fantasma dalla casa
 
 }
 
