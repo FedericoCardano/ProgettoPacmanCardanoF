@@ -16,6 +16,7 @@ void IGhostInterface::Move(int TargetX, int TargetY, bool G_hunter, Alabirinto* 
 	int maxDistanzaIndex = 0;
 	char space[4];
 	bool walkable[4];
+
 		UStaticMeshComponent* MainBody = Cast<UStaticMeshComponent>(Cast<AActor>(this)->GetDefaultSubobjectByName("MainCube"));
 		UStaticMeshComponent* BlueBody = Cast<UStaticMeshComponent>(Cast<AActor>(this)->GetDefaultSubobjectByName("BlueCube"));
 

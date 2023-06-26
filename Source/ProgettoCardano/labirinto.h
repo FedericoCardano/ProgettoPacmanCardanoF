@@ -8,6 +8,7 @@
 #include "Pill.h"
 #include "SuperPill.h"
 
+
 #include "labirinto.generated.h"
 
 UCLASS()
@@ -19,7 +20,10 @@ public:
 	// Sets default values for this actor's properties
 	Alabirinto();
 	
-
+	void win();
+	void lose();
+	bool loser = false;
+	bool winner = false;
 	int punteggio=0;
 
 	int getMap(int x, int y)
@@ -47,6 +51,7 @@ public:
 
 	UPROPERTY(EditDefaultsOnly)
 		TSubclassOf<AActor> Space;
+
 
 
 

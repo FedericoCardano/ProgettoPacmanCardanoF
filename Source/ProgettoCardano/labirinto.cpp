@@ -12,6 +12,15 @@ Alabirinto::Alabirinto()
 
 }
 
+void Alabirinto::win() {
+
+	winner = true;
+}
+
+void Alabirinto::lose(){
+	loser = true;
+}
+
 // Called when the game starts or when spawned
 void Alabirinto::BeginPlay()
 {

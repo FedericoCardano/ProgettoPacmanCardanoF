@@ -27,6 +27,7 @@ class PROGETTOCARDANO_API APacman : public APawn
 	int posX;
 	int posY;
 	bool P_hunter=false;
+	bool stop = false;
 	int Nlives=3;
 	int Npill=240 ;
 
