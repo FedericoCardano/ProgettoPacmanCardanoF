@@ -111,7 +111,7 @@ void APacman::Tick(float DeltaTime)
 	{
 		//You Win
 		if (!stop) {
-			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, FString::Printf(TEXT("You Win Lives= %d Npil %d"), Nlives, Npill));
+			GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, FString::Printf(TEXT("You Win Lives= %d Punteggio %d"), Nlives, labirinto->punteggio ));
 			FVector NewLocation = FVector(23, 13, 0) * 100;
 			SetActorLocation(NewLocation, false, nullptr, ETeleportType::TeleportPhysics);
 			labirinto->win();
@@ -125,7 +125,7 @@ void APacman::Tick(float DeltaTime)
 	{
 		//GAME OVER
 		if (!stop) {
-			GEngine->AddOnScreenDebugMessage(-1,15.0f,FColor::Blue,FString::Printf(TEXT("GAME OVER Lives= %d Npil %d"),Nlives,Npill));
+			GEngine->AddOnScreenDebugMessage(-1,15.0f,FColor::Blue,FString::Printf(TEXT("GAME OVER Lives= %d Punteggio %d"),Nlives, labirinto->punteggio));
 			labirinto->lose();
 			FVector NewLocation = FVector(23, 13, 0) * 100;
 			SetActorLocation(NewLocation, false, nullptr, ETeleportType::TeleportPhysics);
@@ -136,7 +136,7 @@ void APacman::Tick(float DeltaTime)
 		currentVelocity.Y = 0;
 	}
 	else
-		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, FString::Printf(TEXT("Lives= %d Npil %d"), Nlives, Npill));
+		GEngine->AddOnScreenDebugMessage(-1, 15.0f, FColor::Blue, FString::Printf(TEXT("Lives= %d labirinto->punteggio %d"), Nlives, labirinto->punteggio));
 
 	if (currentVelocity.X / StandardVelocity > 0)
 		direzioneX = 1;
